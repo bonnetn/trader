@@ -1,7 +1,8 @@
 from selenium.common.exceptions import NoSuchElementException
 
-from action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL
+from action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
 from tab.all import extract_resources_in_header
+from tab.tab import Tab
 
 CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/table/tbody/tr[1]/th'
 LEVEL_CONSTRUCTION_XPATH = '//li[@id="button{}"]//span[@class="level"]'
@@ -20,12 +21,11 @@ RESOURCE_TAB_ID_BUILDING = {
 }
 
 
-class ResourceTab:
+class ResourceTab(Tab):
     def __init__(self, driver):
         self.driver = driver
 
     def extract_info(self):
-
         levels = {}
         for name, idBuilding in RESOURCE_TAB_ID_BUILDING.items():
             self.driver.implicitly_wait(TIMEOUT)
@@ -43,6 +43,9 @@ class ResourceTab:
         result[RESULT_RESOURCE] = extract_resources_in_header(self.driver)
 
         return result
+
+    def move(self):
+        self.driver.find_element_by_xpath(RESOURCE_BUTTON_XPATH).click()
 
     def build(self, building):
         self.driver.find_element_by_xpath(get_build_button_xpath(building)).click()

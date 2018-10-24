@@ -4,7 +4,6 @@ from selenium import webdriver
 
 from action import constants
 from action.config import parse_config
-from action.constants import RESOURCE_BUTTON_XPATH
 from action.login import login_sequence
 from tab.resource import ResourceTab
 
@@ -19,19 +18,13 @@ def launch_bot():
         print("Loaded page.")
 
         login_sequence(driver, username, password)
-        switch_to_resource_tab(driver)
-
-        resource_tab = ResourceTab(driver)
-        pprint(resource_tab.extract_info())
+        with ResourceTab(driver) as resource_tab:
+            pprint(resource_tab.extract_info())
         # resource_tab.build(SOLAR)
 
         input("Waiting...")
     finally:
         driver.quit()
-
-
-def switch_to_resource_tab(driver):
-    driver.find_element_by_xpath(RESOURCE_BUTTON_XPATH).click()
 
 
 if __name__ == "__main__":
