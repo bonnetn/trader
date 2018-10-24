@@ -12,8 +12,6 @@ def extract_resources_in_header(driver):
     result = {}
     for res in ALL_RESOURCES:
         driver.implicitly_wait(TIMEOUT)
-        print(res)
-        print(XPATH_COUNTER[res])
         result[res] = driver.find_element_by_xpath(XPATH_COUNTER[res]).text
 
     return result
