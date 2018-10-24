@@ -1,8 +1,8 @@
 from selenium.common.exceptions import NoSuchElementException
 
 from action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
-from tab.all import extract_resources_in_header
-from tab.tab import Tab
+from screen.all import extract_resources_in_header
+from screen.screen import Screen
 
 CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/table/tbody/tr[1]/th'
 LEVEL_CONSTRUCTION_XPATH = '//li[@id="button{}"]//span[@class="level"]'
@@ -21,7 +21,7 @@ RESOURCE_TAB_ID_BUILDING = {
 }
 
 
-class ResourceTab(Tab):
+class ResourceScreen(Screen):
     """
     ResourceTab represents the page where you can see all your buildings that produce/store resources.
     """

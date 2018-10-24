@@ -19,4 +19,4 @@ def login_sequence(driver, username, password):
     print("Chose the universe.")
 
     driver.switch_to.window(driver.window_handles[1])
-    print("Switched to new tab.")
+    print("Switched to new screen.")

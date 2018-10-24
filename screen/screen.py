@@ -1,7 +1,7 @@
 """
-This define a generic screen that you can find in the game. You usually access a tab by clicking on the right menu.
+This define a generic screen that you can find in the game. You usually access a screen by clicking on the right menu.
 """
-class Tab:
+class Screen:
     """
     Tab represents a screen, with its information and interactions.
     """
