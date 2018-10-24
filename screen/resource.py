@@ -20,7 +20,7 @@ RESOURCE_TAB_ID_BUILDING = {
 }
 
 
-class ResourceGenericScreen(generic_screen):
+class ResourceScreen(generic_screen):
     """
     ResourceScreen represents the page where you can see all your buildings that produce/store resources.
     """

@@ -5,7 +5,7 @@ from selenium import webdriver
 from action import constants
 from action.config import parse_config
 from action.login import login_sequence
-from screen.resource import ResourceGenericScreen
+from screen.resource import ResourceScreen
 
 
 def launch_bot():
@@ -17,7 +17,7 @@ def launch_bot():
         print("Loaded page.")
 
         login_sequence(driver, username, password)
-        with ResourceGenericScreen(driver) as resource_tab:
+        with ResourceScreen(driver) as resource_tab:
             pprint(resource_tab.extract_info())
 
         input("Waiting...")
