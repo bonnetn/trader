@@ -34,3 +34,6 @@ class Screen:
 
     def __exit__(self, type, value, traceback):
         lock.release()
+
+    def __init__(self, driver):
+        self.driver = driver

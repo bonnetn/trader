@@ -1,8 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException
 
 from action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
-from screen.all import extract_resources_in_header
-from screen.screen import Screen
+from screen.generic_screen import generic_screen
 
 CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/table/tbody/tr[1]/th'
 LEVEL_CONSTRUCTION_XPATH = '//li[@id="button{}"]//span[@class="level"]'
@@ -21,9 +20,9 @@ RESOURCE_TAB_ID_BUILDING = {
 }
 
 
-class ResourceScreen(Screen):
+class ResourceGenericScreen(generic_screen):
     """
-    ResourceTab represents the page where you can see all your buildings that produce/store resources.
+    ResourceScreen represents the page where you can see all your buildings that produce/store resources.
     """
 
     def __init__(self, driver):
@@ -48,7 +47,7 @@ class ResourceScreen(Screen):
         except NoSuchElementException:
             result["building"] = False
 
-        result[RESULT_RESOURCE] = extract_resources_in_header(self.driver)
+        result[RESULT_RESOURCE] = self.extract_resources()
 
         return result
 
