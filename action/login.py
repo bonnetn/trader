@@ -1,7 +1,12 @@
-from action import constants
+import time
+
+from action.constants import PLAY_BUTTON_XPATH, TIMEOUT
 
 
 def login_sequence(driver, username, password):
+    """
+    Execute the login sequence.
+    """
     driver.find_element_by_id("ui-id-1").click()
     driver.find_element_by_id("usernameLogin").send_keys(username)
     driver.find_element_by_id("passwordLogin").send_keys(password)
@@ -9,7 +14,8 @@ def login_sequence(driver, username, password):
     driver.find_element_by_id("loginSubmit").click()
     print("Logged in.")
 
-    driver.find_element_by_xpath(constants.PLAY_BUTTON_XPATH).click()
+    driver.implicitly_wait(TIMEOUT)
+    driver.find_element_by_xpath(PLAY_BUTTON_XPATH).click()
     print("Chose the universe.")
 
     driver.switch_to.window(driver.window_handles[1])

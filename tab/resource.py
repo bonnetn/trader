@@ -22,10 +22,18 @@ RESOURCE_TAB_ID_BUILDING = {
 
 
 class ResourceTab(Tab):
+    """
+    ResourceTab represents the page where you can see all your buildings that produce/store resources.
+    """
+
     def __init__(self, driver):
         self.driver = driver
 
     def extract_info(self):
+        """
+        Extract the resources, levels of the buildings and the building currently being built.
+        :return: a dictionnary
+        """
         levels = {}
         for name, idBuilding in RESOURCE_TAB_ID_BUILDING.items():
             self.driver.implicitly_wait(TIMEOUT)
@@ -45,15 +53,30 @@ class ResourceTab(Tab):
         return result
 
     def move(self):
+        """
+        Move to the resource screen by clicking on the menu on the right.
+        """
         self.driver.find_element_by_xpath(RESOURCE_BUTTON_XPATH).click()
 
     def build(self, building):
+        """
+        Order the construction of a building.
+        :param building: building to construct
+        """
         self.driver.find_element_by_xpath(get_build_button_xpath(building)).click()
 
 
 def get_build_button_xpath(building):
+    """
+    Get the XPath from the button to build a specific building.
+    :param building: building to construct
+    """
     return BUILD_BUTTON.format(RESOURCE_TAB_ID_BUILDING[building])
 
 
 def get_construction_level_xpath(building):
+    """
+    Return the XPath of the span tags that contain the construction level of the building.
+    :param building:
+    """
     return LEVEL_CONSTRUCTION_XPATH.format(building)

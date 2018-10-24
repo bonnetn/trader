@@ -1,4 +1,8 @@
-TIMEOUT = 100000000000
+"""
+Common constants
+"""
+
+TIMEOUT = 30
 
 METAL = "metal"
 CRYSTAL = "crystal"
@@ -10,6 +14,6 @@ PLAY_BUTTON_XPATH = '//*[@id="accountlist"]/div/div[1]/div[2]/div/div/div[11]/bu
 
 RESOURCE_BUTTON_XPATH = '//*[@id="menuTable"]/li[2]/a'
 
-# Fields that you can fin in result
+# Fields that you can find as keys in a result
 RESULT_RESOURCE = "resources"
 RESULT_LEVEL = "level"
