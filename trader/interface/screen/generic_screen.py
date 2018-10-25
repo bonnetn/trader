@@ -2,7 +2,7 @@
 All is a module that contains misc. function that can be called from everywhere.
 """
 from trader.interface.action.constants import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
-from trader.interface.screen.screen import Screen
+from trader.interface.base_screen import Screen
 
 XPATH_COUNTER = {
     METAL: '//*[@id="resources_metal"]',

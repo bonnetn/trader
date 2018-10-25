@@ -5,6 +5,7 @@ lock = threading.Lock()
 
 """
 This define a generic screen that you can find in the game. You usually access a screen by clicking on the right menu.
+You can perform some actions on a screen or query its information with extract_info.
 """
 
 
