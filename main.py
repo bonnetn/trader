@@ -3,7 +3,7 @@ from selenium import webdriver
 from trader.behavior.context import Context
 from trader.behavior.state.end import endState
 from trader.behavior.state.login import loginState
-from trader.log import LOG
+from trader.util.log import LOG
 
 
 def launch_bot():

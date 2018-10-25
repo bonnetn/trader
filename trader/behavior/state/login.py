@@ -2,7 +2,7 @@ from trader.behavior.state.end import endState
 from trader.screen.action.config import parse_config
 from trader.behavior.context import Context
 from trader.behavior.game_state import GameState
-from trader.log import LOG
+from trader.util.log import LOG
 from trader.screen.action.login import login_sequence
 
 
