@@ -1,8 +1,8 @@
 """
 All is a module that contains misc. function that can be called from everywhere.
 """
-from trader.screen.action import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
-from trader.screen.screen import Screen
+from trader.interface.action.constants import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
+from trader.interface.screen.screen import Screen
 
 XPATH_COUNTER = {
     METAL: '//*[@id="resources_metal"]',
@@ -12,7 +12,7 @@ XPATH_COUNTER = {
 }
 
 
-class generic_screen(Screen):
+class GenericScreen(Screen):
     def extract_info(self):
         raise NotImplementedError()
 
@@ -22,7 +22,6 @@ class generic_screen(Screen):
     def extract_resources(self):
         """
         Extract the resource count from the top band.
-        :param driver:
         :return: a dictionnary, which binds a resource to an amount
         """
         result = {}

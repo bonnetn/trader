@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException
 
-from trader.screen.action import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
-from trader.screen import generic_screen
+from trader.interface.action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
+from trader.interface.screen.genericscreen import GenericScreen
 
 CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/table/tbody/tr[1]/th'
 LEVEL_CONSTRUCTION_XPATH = '//li[@id="button{}"]//span[@class="level"]'
@@ -20,12 +20,13 @@ RESOURCE_TAB_ID_BUILDING = {
 }
 
 
-class ResourceScreen(generic_screen):
+class ResourceScreen(GenericScreen):
     """
     ResourceScreen represents the page where you can see all your buildings that produce/store resources.
     """
 
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     def extract_info(self):

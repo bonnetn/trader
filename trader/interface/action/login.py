@@ -1,4 +1,4 @@
-from trader.screen.action.constants import PLAY_BUTTON_XPATH, TIMEOUT
+from trader.interface.action.constants import PLAY_BUTTON_XPATH, TIMEOUT
 from trader.util.log import LOG
 
 

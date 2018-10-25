@@ -1,21 +1,20 @@
 from selenium.common.exceptions import NoSuchElementException
 
-from action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, INSTALLATION_BUTTON_XPATH
-from screen.screen import Screen
-
+from trader.interface.action.constants import TIMEOUT, RESULT_LEVEL, INSTALLATION_BUTTON_XPATH
+from trader.interface.screen.screen import Screen
 
 CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/table/tbody/tr[1]/th'
 LEVEL_CONSTRUCTION_XPATH = '//li[@id="button{}"]//span[@class="level"]'
 BUILD_BUTTON = "/html/body/div[2]/div[2]/div/div[3]/div[2]/div[4]/div[2]/ul[1]/li[{}]/div/div/a[1]"
 
-USINE_ROBOT= "usine_de_robot"
-CHANTIER_SPATIAL= "chantier_spatial"
-LABORATOIRE= "laboratoire"
-DEPOT_RAVITAILLEMENT= "depot_de_ravitaillement"
-SILO_MISSILE= "silo_de_missile"
-USINE_NANITE= "usine_de_nanite"
-TERRAFORMEUR= "terraformeur"
-DOCK_SPATIAL= "dock_spatial"
+USINE_ROBOT = "usine_de_robot"
+CHANTIER_SPATIAL = "chantier_spatial"
+LABORATOIRE = "laboratoire"
+DEPOT_RAVITAILLEMENT = "depot_de_ravitaillement"
+SILO_MISSILE = "silo_de_missile"
+USINE_NANITE = "usine_de_nanite"
+TERRAFORMEUR = "terraformeur"
+DOCK_SPATIAL = "dock_spatial"
 
 INSTALLATION_TAB_ID_BUILDING = {
     USINE_ROBOT: 0,
@@ -29,13 +28,13 @@ INSTALLATION_TAB_ID_BUILDING = {
 }
 
 
-
 class InstallationScreen(Screen):
     """
     InstallationTab represents the page where you can see all your buildings that produce/store resources.
     """
 
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     def extract_info(self):
@@ -57,7 +56,7 @@ class InstallationScreen(Screen):
         except NoSuchElementException:
             result["building"] = False
 
-        #result[RESULT_RESOURCE] = extract_resources_in_header(self.driver)
+        # result[RESULT_RESOURCE] = extract_resources_in_header(self.driver)
 
         return result
 
