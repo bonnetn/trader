@@ -1,9 +1,9 @@
 from selenium import webdriver
 
-from behavior.context import Context
-from behavior.state.end import endState
-from behavior.state.login import loginState
-from log import LOG
+from trader.behavior.context import Context
+from trader.behavior.state.end import endState
+from trader.behavior.state.login import loginState
+from trader.log import LOG
 
 
 def launch_bot():

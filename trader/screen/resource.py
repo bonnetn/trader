@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException
 
-from action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
-from screen.generic_screen import generic_screen
+from trader.screen.action import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
+from trader.screen import generic_screen
 
 CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/table/tbody/tr[1]/th'
 LEVEL_CONSTRUCTION_XPATH = '//li[@id="button{}"]//span[@class="level"]'

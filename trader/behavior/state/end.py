@@ -1,6 +1,6 @@
-from behavior.context import Context
-from behavior.game_state import GameState
-from log import LOG
+from trader.behavior.context import Context
+from trader.behavior.game_state import GameState
+from trader.log import LOG
 
 
 class EndState(GameState):

@@ -1,7 +1,5 @@
-import time
-
-from action.constants import PLAY_BUTTON_XPATH, TIMEOUT
-from log import LOG
+from trader.screen.action.constants import PLAY_BUTTON_XPATH, TIMEOUT
+from trader.log import LOG
 
 
 def login_sequence(driver, username, password):

@@ -1,9 +1,9 @@
-from action.config import parse_config
-from action.login import login_sequence
-from behavior.context import Context
-from behavior.game_state import GameState
-from behavior.state.end import endState
-from log import LOG
+from trader.behavior.state.end import endState
+from trader.screen.action.config import parse_config
+from trader.behavior.context import Context
+from trader.behavior.game_state import GameState
+from trader.log import LOG
+from trader.screen.action.login import login_sequence
 
 
 class LoginState(GameState):

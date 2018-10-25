@@ -1,4 +1,4 @@
-from behavior.context import Context
+from trader.behavior.context import Context
 
 
 class GameState:  #  Forward declaration, needed for type hinting.

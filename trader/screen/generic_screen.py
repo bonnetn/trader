@@ -1,8 +1,8 @@
 """
 All is a module that contains misc. function that can be called from everywhere.
 """
-from action.constants import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
-from screen.screen import Screen
+from trader.screen.action import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
+from trader.screen.screen import Screen
 
 XPATH_COUNTER = {
     METAL: '//*[@id="resources_metal"]',

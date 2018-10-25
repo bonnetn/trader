@@ -1,6 +1,6 @@
 import configparser
 
-from log import LOG
+from trader.log import LOG
 
 
 def parse_config():
