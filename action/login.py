@@ -1,6 +1,7 @@
 import time
 
 from action.constants import PLAY_BUTTON_XPATH, TIMEOUT
+from log import LOG
 
 
 def login_sequence(driver, username, password):
@@ -12,11 +13,11 @@ def login_sequence(driver, username, password):
     driver.find_element_by_id("passwordLogin").send_keys(password)
 
     driver.find_element_by_id("loginSubmit").click()
-    print("Logged in.")
+    LOG.debug("Clicked 'Log in'")
 
     driver.implicitly_wait(TIMEOUT)
     driver.find_element_by_xpath(PLAY_BUTTON_XPATH).click()
-    print("Chose the universe.")
+    LOG.debug("Chose the universe.")
 
     driver.switch_to.window(driver.window_handles[1])
-    print("Switched to new screen.")
+    LOG.debug("Switched to new screen.")

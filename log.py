@@ -2,4 +2,7 @@ import logging
 
 LOG = logging.getLogger("trader")
 LOG.setLevel(logging.DEBUG)
-LOG.addHandler(logging.StreamHandler())
+handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+LOG.addHandler(handler)

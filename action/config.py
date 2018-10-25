@@ -1,5 +1,7 @@
 import configparser
 
+from log import LOG
+
 
 def parse_config():
     """
@@ -13,5 +15,5 @@ def parse_config():
     general = config["general"]
     url = general["url"].strip('"')
 
-    print("Loaded config.")
+    LOG.debug("Loaded config.")
     return cred["login"], cred["password"], url
