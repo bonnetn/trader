@@ -4,6 +4,11 @@ from action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, GALAXY_BUTT
 from screen.screen import Screen
 
 XPATH_CHANGE_BUTTON = '//*[@id="galaxyHeader"]/form/div'
+XPATH_NEXT_SYSTEM = '//*[@id="galaxyHeader"]/form/span[6]'
+XPATH_PREV_SYSTEM = '//*[@id="galaxyHeader"]/form/span[5]'
+XPATH_NEXT_GALAXY = '//*[@id="galaxyHeader"]/form/span[3]'
+XPATH_PREV_GALAXY = '//*[@id="galaxyHeader"]/form/span[2]'
+
 
 class GalaxyScreen(Screen):
     """
@@ -12,6 +17,22 @@ class GalaxyScreen(Screen):
 
     def __init__(self, driver):
         self.driver = driver
+
+    def next_system(self):
+        self.driver.find_element_by_xpath(XPATH_NEXT_SYSTEM).click()
+        self.driver.implicitly_wait(TIMEOUT)
+
+    def prev_system(self):
+        self.driver.find_element_by_xpath(XPATH_PREV_SYSTEM).click()
+        self.driver.implicitly_wait(TIMEOUT)
+
+    def next_galaxy(self):
+        self.driver.find_element_by_xpath(XPATH_NEXT_GALAXY).click()
+        self.driver.implicitly_wait(TIMEOUT)
+
+    def prev_galaxy(self):
+        self.driver.find_element_by_xpath(XPATH_PREV_GALAXY).click()
+        self.driver.implicitly_wait(TIMEOUT)
 
     def change_system(self,galaxie,system):
         """

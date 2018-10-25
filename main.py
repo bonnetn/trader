@@ -6,6 +6,8 @@ from action import constants
 from action.config import parse_config
 from action.login import login_sequence
 from screen.resource import ResourceScreen
+from screen.installations import InstallationScreen
+from screen.galaxie import GalaxyScreen
 
 
 def launch_bot():
@@ -19,6 +21,16 @@ def launch_bot():
         login_sequence(driver, username, password)
         with ResourceScreen(driver) as resource_tab:
             pprint(resource_tab.extract_info())
+
+        with InstallationScreen(driver) as installation_tab:
+            pprint(installation_tab.extract_info())
+
+        with  GalaxyScreen(driver) as galaxy_tab:
+            galaxy_tab.next_system()
+            galaxy_tab.next_galaxy()
+            galaxy_tab.prev_system()
+            galaxy_tab.prev_galaxy()
+            galaxy_tab.change_system(2,200)
 
         input("Waiting...")
     finally:
