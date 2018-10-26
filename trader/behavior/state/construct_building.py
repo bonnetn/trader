@@ -2,7 +2,7 @@ import sqlite3
 
 from trader.behavior.context import Context
 from trader.behavior.game_state import GameState
-from trader.behavior.state.end import endState
+from trader.behavior.state.sleep import Sleep, MINUTE
 from trader.interface.screen.resource import RESOURCE_TAB_ID_BUILDING, ResourceScreen, CannotBuildException
 from trader.util.log import LOG
 
@@ -60,7 +60,7 @@ class ConstructBuilding(GameState):
             while self.try_build_queue(screen):
                 pass
 
-        return endState
+        return Sleep(self, 2 * MINUTE)
 
 
 constructBuilding = ConstructBuilding()
