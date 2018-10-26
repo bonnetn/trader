@@ -13,10 +13,7 @@ ALL_RESOURCES = [METAL, CRYSTAL, DEUTERIUM, ENERGY]
 
 RESOURCE_BUTTON_XPATH = '//*[@id="menuTable"]/li[2]/a'
 
-
 MAIN_BUTTON_XPATH = '//*[@id="menuTable"]/li[1]/a'
-
-
 
 # Fields that you can fin in result
 

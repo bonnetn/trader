@@ -1,6 +1,6 @@
 from trader.behavior.context import Context
 from trader.behavior.game_state import GameState
-from trader.behavior.state.end import endState
+from trader.behavior.state.construct_building import constructBuilding
 from trader.interface.screen.login import LoginScreen
 from trader.util.config import parse_config
 from trader.util.log import LOG
@@ -14,7 +14,7 @@ class LoginState(GameState):
             screen.login_sequence(username, password)
         LOG.info("Logged in.")
 
-        return endState
+        return constructBuilding
 
 
 loginState = LoginState()
