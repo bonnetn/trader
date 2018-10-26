@@ -1,4 +1,4 @@
-from trader.interface.action.constants import TIMEOUT, GALAXY_BUTTON_XPATH
+from trader.interface.constants import TIMEOUT, GALAXY_BUTTON_XPATH
 from trader.interface.base_screen import Screen
 
 XPATH_CHANGE_BUTTON = '//*[@id="galaxyHeader"]/form/div'

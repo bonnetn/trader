@@ -1,7 +1,7 @@
 """
 All is a module that contains misc. function that can be called from everywhere.
 """
-from trader.interface.action.constants import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
+from trader.interface.constants import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
 from trader.interface.base_screen import Screen
 
 XPATH_COUNTER = {
@@ -13,10 +13,10 @@ XPATH_COUNTER = {
 
 
 class GenericScreen(Screen):
-    def extract_info(self):
+    def extract_info(self) -> dict:
         raise NotImplementedError()
 
-    def move(self):
+    def move(self) -> None:
         raise NotImplementedError()
 
     def extract_resources(self):

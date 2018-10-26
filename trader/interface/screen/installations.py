@@ -1,6 +1,6 @@
 from selenium.common.exceptions import NoSuchElementException
 
-from trader.interface.action.constants import TIMEOUT, RESULT_LEVEL, INSTALLATION_BUTTON_XPATH
+from trader.interface.constants import TIMEOUT, RESULT_LEVEL, INSTALLATION_BUTTON_XPATH
 from trader.interface.base_screen import Screen
 
 CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/table/tbody/tr[1]/th'

@@ -11,8 +11,6 @@ ENERGY = "energy"
 
 ALL_RESOURCES = [METAL, CRYSTAL, DEUTERIUM, ENERGY]
 
-PLAY_BUTTON_XPATH = '//*[@id="accountlist"]/div/div[1]/div[2]/div/div/div[11]/button'
-
 RESOURCE_BUTTON_XPATH = '//*[@id="menuTable"]/li[2]/a'
 
 
