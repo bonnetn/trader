@@ -15,6 +15,8 @@ def launch_bot() -> None:
         ctx = Context(driver)
         while run_state_machine(driver, ctx):  #  Relaunch the state machine if it returns True.
             pass
+    except KeyboardInterrupt:
+        LOG.debug("Stop signal received.")
     finally:
         LOG.info("Bot ended.")
         driver.quit()
