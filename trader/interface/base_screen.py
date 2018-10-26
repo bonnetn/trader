@@ -1,5 +1,10 @@
 import threading
 
+
+class LoggedOutException(Exception):
+    pass
+
+
 # Lock access to Selenium while using a screen.
 lock = threading.Lock()
 
