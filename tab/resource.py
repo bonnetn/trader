@@ -7,6 +7,7 @@ CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[
 LEVEL_CONSTRUCTION_XPATH = '//li[@id="button{}"]//span[@class="level"]'
 BUILD_BUTTON = "/html/body/div[2]/div[2]/div/div[3]/div[2]/div[4]/div[2]/ul[1]/li[{}]/div/div/a[1]"
 
+
 METAL_MINE = "metal_mine"
 CRYSTAL_MINE = "crystal_mine"
 DEUTERIUM_MINE = "deuterium_mine"
