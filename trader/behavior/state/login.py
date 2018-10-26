@@ -1,22 +1,20 @@
-from trader.behavior.state.end import endState
 from trader.behavior.context import Context
 from trader.behavior.game_state import GameState
-from trader.interface.action.config import parse_config
+from trader.behavior.state.construct_building import constructBuilding
+from trader.interface.screen.login import LoginScreen
+from trader.util.config import parse_config
 from trader.util.log import LOG
-from trader.interface.action.login import login_sequence
 
 
 class LoginState(GameState):
     def run(self, ctx: Context) -> GameState:
-        d = ctx.driver
-
         username, password, url = parse_config()
 
-        d.get(url)
-        login_sequence(d, username, password)
+        with LoginScreen(ctx.driver, url) as screen:
+            screen.login_sequence(username, password)
         LOG.info("Logged in.")
 
-        return endState
+        return constructBuilding
 
 
 loginState = LoginState()
