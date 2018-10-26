@@ -51,14 +51,20 @@ class GalaxyScreen(Screen):
         content = self.driver.find_elements_by_css_selector('tr.row')
         planet = { }
         planet["habitee"]={}
+        planet["habitee"]["actif"]={}
+        planet["habitee"]["inactif"]={}
         planet["inhabitee"]=[]
         for elt in content :
             classe = elt.get_attribute("class")
             if(classe == """row empty_filter
                                                 """):
                 planet["inhabitee"].append(elt.find_element_by_class_name("position").text)
+            elif( classe == """row inactive_filter 
+                                       
+                        """):
+                planet["habitee"]["inactif"][elt.find_element_by_class_name("position").text]=(elt.find_element_by_class_name("planetname").text,elt.find_element_by_class_name("playername").text)
             else:
-                planet["habitee"][elt.find_element_by_class_name("position").text]=(elt.find_element_by_class_name("planetname").text,elt.find_element_by_class_name("playername").text)
+                planet["habitee"]["actif"][elt.find_element_by_class_name("position").text]=(elt.find_element_by_class_name("planetname").text,elt.find_element_by_class_name("playername").text)
 
         
         return planet
