@@ -1,12 +1,12 @@
 from selenium.common.exceptions import NoSuchElementException
 
-from trader.interface.action.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
+from trader.interface.constants import TIMEOUT, RESULT_RESOURCE, RESULT_LEVEL, RESOURCE_BUTTON_XPATH
 from trader.interface.screen.generic_screen import GenericScreen
 
 CURRENT_BUILDING_XPATH = '/html/body/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/table/tbody/tr[1]/th'
 LEVEL_CONSTRUCTION_XPATH = '//li[@id="button{}"]//span[@class="level"]'
 BUILD_BUTTON = "/html/body/div[2]/div[2]/div/div[3]/div[2]/div[4]/div[2]/ul[1]/li[{}]/div/div/a[1]"
-
+CONSTRUCTION_PICTURE = '//li[@id="button{}"]'
 
 METAL_MINE = "metal_mine"
 CRYSTAL_MINE = "crystal_mine"
@@ -19,6 +19,10 @@ RESOURCE_TAB_ID_BUILDING = {
     DEUTERIUM_MINE: 3,
     SOLAR: 4,
 }
+
+
+class CannotBuildException(Exception):
+    pass
 
 
 class ResourceScreen(GenericScreen):
@@ -64,7 +68,24 @@ class ResourceScreen(GenericScreen):
         Order the construction of a building.
         :param building: building to construct
         """
+        pic = self.driver.find_element_by_xpath(get_construction_picture(building))
+        if pic.get_attribute("class") != "on":
+            raise CannotBuildException()  #  Greyed button
+
+        self.driver.implicitly_wait(0)
+        if self.driver.find_elements_by_xpath(
+                get_construction_picture(building) + '/div/div/div[@class="construction"]'):
+            raise CannotBuildException()  # Construction is ongoing.
+
         self.driver.find_element_by_xpath(get_build_button_xpath(building)).click()
+
+
+def get_construction_picture(building):
+    """
+    Get the XPath from the little picture that can be crossed if you cannot build a specific building.
+    :param building: building to construct
+    """
+    return CONSTRUCTION_PICTURE.format(RESOURCE_TAB_ID_BUILDING[building])
 
 
 def get_build_button_xpath(building):

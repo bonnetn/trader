@@ -1,4 +1,4 @@
-from trader.interface.action.constants import TIMEOUT, GALAXY_BUTTON_XPATH
+from trader.interface.constants import TIMEOUT, GALAXY_BUTTON_XPATH
 from trader.interface.base_screen import Screen
 
 XPATH_CHANGE_BUTTON = '//*[@id="galaxyHeader"]/form/div'
@@ -21,26 +21,24 @@ class GalaxyScreen(Screen):
         self.driver = driver
 
     def next_system(self):
-        self.driver.find_element_by_xpath(XPATH_NEXT_SYSTEM).click()
         self.driver.implicitly_wait(TIMEOUT)
+        self.driver.find_element_by_xpath(XPATH_NEXT_SYSTEM).click()
 
     def prev_system(self):
-        self.driver.find_element_by_xpath(XPATH_PREV_SYSTEM).click()
         self.driver.implicitly_wait(TIMEOUT)
+        self.driver.find_element_by_xpath(XPATH_PREV_SYSTEM).click()
 
     def next_galaxy(self):
-        self.driver.find_element_by_xpath(XPATH_NEXT_GALAXY).click()
         self.driver.implicitly_wait(TIMEOUT)
+        self.driver.find_element_by_xpath(XPATH_NEXT_GALAXY).click()
 
     def prev_galaxy(self):
-        self.driver.find_element_by_xpath(XPATH_PREV_GALAXY).click()
         self.driver.implicitly_wait(TIMEOUT)
+        self.driver.find_element_by_xpath(XPATH_PREV_GALAXY).click()
+       
 
     def change_system(self, galaxie, system):
-        """
-        Execute the login sequence.
-        """
-
+        
         self.driver.find_element_by_id("galaxy_input").send_keys(galaxie)
         self.driver.find_element_by_id("system_input").send_keys(system)
 
@@ -48,8 +46,26 @@ class GalaxyScreen(Screen):
 
         self.driver.implicitly_wait(TIMEOUT)
 
+    def planete_system(self):
+        self.driver.implicitly_wait(TIMEOUT)
+        content = self.driver.find_elements_by_css_selector('tr.row')
+        planet = { }
+        planet["habitee"]={}
+        planet["inhabitee"]=[]
+        for elt in content :
+            classe = elt.get_attribute("class")
+            if(classe == """row empty_filter
+                                                """):
+                planet["inhabitee"].append(elt.find_element_by_class_name("position").text)
+            else:
+                planet["habitee"][elt.find_element_by_class_name("position").text]=(elt.find_element_by_class_name("planetname").text,elt.find_element_by_class_name("playername").text)
+
+        
+        return planet
+
     def move(self):
         """
         Move to the resource screen by clicking on the menu on the right.
         """
         self.driver.find_element_by_xpath(GALAXY_BUTTON_XPATH).click()
+
