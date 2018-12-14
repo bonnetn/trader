@@ -1,6 +1,8 @@
 """
 All is a module that contains misc. function that can be called from everywhere.
 """
+import time
+
 from trader.interface.base_screen import Screen
 from trader.interface.constants import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
 from trader.util.log import LOG
@@ -34,10 +36,10 @@ class GenericScreen(Screen):
             if planet_coords == target.coord:
                 planet_name = planet.find_element_by_class_name("planet-name").text
                 if planet_name == target.name:
-                    LOG.debug("Selecting planet for {}".format(planet))
+                    LOG.debug("Selecting planet for {}".format(target))
                     planet.find_element_by_xpath('.//a[contains(@class, "planetlink")]').click()
                 else:
-                    LOG.debug("Selecting moon for {}".format(planet))
+                    LOG.debug("Selecting moon for {}".format(target))
                     planet.find_element_by_xpath('.//a[contains(@class, "moonlink")]').click()
 
                 return
