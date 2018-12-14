@@ -43,6 +43,21 @@ class GenericScreen(Screen):
                 return
 
         raise Exception("Could not find planet {}".format(target))
+
+
+
+    def extract_planets(self) -> list:
+        planets = self.driver.find_element_by_xpath(PLANETS)
+
+        planet_names = planets.find_elements_by_class_name("planet-name")
+        planet_coords = planets.find_elements_by_class_name("planet-koords")
+
+        planets = zip(planet_coords, planet_names)
+        planets = map(lambda x: Planet(x[0].text, x[1].text), planets)
+        planets = list(planets)
+
+        return planets
+
     def extract_resources(self):
         """
         Extract the resource count from the top band.
