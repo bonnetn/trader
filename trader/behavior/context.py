@@ -1,7 +1,11 @@
+from datetime import timedelta
+
+
 class Context:
     """
     Context is an object containing the relevant variables that need to be passed across states.
     """
-    def __init__(self, driver):
-        self.driver = driver
-        assert driver
+
+    def __init__(self):
+        self.driver = True
+        self.next_sleep = timedelta()

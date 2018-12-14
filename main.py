@@ -1,6 +1,4 @@
-
-from trader.trader import launch_bot
-
+from trader.behavior.behavior import run_bot
 
 if __name__ == "__main__":
-    launch_bot()
+    run_bot()
