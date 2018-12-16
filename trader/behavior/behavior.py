@@ -13,17 +13,20 @@ def run_bot() -> None:
     ctx = Context()
 
     while True:
-        driver = webdriver.Firefox()
-        ctx.driver = driver
         try:
-            loginState.run(ctx)
-            attackDetection.run(ctx)
-        except KeyboardInterrupt:
-            LOG.debug("Stop signal received.")
-            return
-        finally:
-            LOG.info("Bot ended.")
-            driver.quit()
+            driver = webdriver.Firefox()
+            ctx.driver = driver
+            try:
+                loginState.run(ctx)
+                attackDetection.run(ctx)
+            except KeyboardInterrupt:
+                LOG.debug("Stop signal received.")
+                return
+            finally:
+                LOG.info("Bot ended.")
+                driver.quit()
 
-        LOG.info("Sleeping for {}".format(ctx.next_sleep))
-        time.sleep(ctx.next_sleep.total_seconds())
+            LOG.info("Sleeping for {}".format(ctx.sleep_for))
+            time.sleep(ctx.sleep_for.total_seconds())
+        except Exception:
+            LOG.exception("Bot crashed, restarting...")

@@ -8,4 +8,4 @@ class Context:
 
     def __init__(self):
         self.driver = True
-        self.next_sleep = timedelta()
+        self.sleep_for = timedelta()
