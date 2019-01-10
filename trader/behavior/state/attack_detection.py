@@ -7,6 +7,7 @@ from trader.behavior.state.sleep import Sleep
 from trader.interface.constants import MAX_TIME_MINUTES, MIN_TIME_MINUTES
 from trader.interface.screen.fleet import FleetScreen
 from trader.interface.screen.fleet_info import FleetInfoScreen
+from trader.interface.screen.generic_screen import Planet
 from trader.util.log import LOG
 from trader.util.util import convert_to_timedelta
 
@@ -55,14 +56,14 @@ class AttackDetection(GameState):
                 time_before_next_attack = _get_next_attack(hostile_missions, planet)
                 if time_before_next_attack < TIME_OFFSET:
                         LOG.debug("Someone is attacking {}, ghosting everything...".format(planet.name))
-                        _ghost_to_random_planet(planet, my_planets)
+                        _ghost_to_random_planet(ctx, planet, my_planets)
                         ctx.sleep_for = min(ctx.sleep_for, time_before_next_attack + TIME_OFFSET)
                 else:
                     ctx.sleep_for = min(ctx.sleep_for, time_before_next_attack - TIME_OFFSET)
                     log_msg = "Someone is attacking {} but we still have time ({}) to sleep..."
                     LOG.debug(log_msg.format(planet.name, time_before_next_attack))
             except Exception:
-                LOG.warning("Failed to ghost {}".format(planet))  #  Log and ghost other planets.
+                LOG.exception("Failed to ghost {}".format(planet))  #  Log and ghost other planets.
 
         # Order ghost fleet to come back if the planet is safe.
         ghost_missions = filter(lambda x: x.mission == 'Stationner', friendly_missions)
