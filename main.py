@@ -1,4 +1,15 @@
-from trader.behavior.behavior import run_bot
+from selenium import webdriver
+
+from trader.bot import Bot
+from trader.util.config import parse_config
+from trader.util.log import LOG
 
 if __name__ == "__main__":
-    run_bot()
+    config = parse_config()
+    LOG.info("Parsed the configuration file.")
+
+    while True:
+        try:
+            Bot(config, webdriver.Firefox).run()
+        except Exception:
+            LOG.exception("The bot crashed, restarting.")

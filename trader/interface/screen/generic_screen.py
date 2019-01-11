@@ -1,10 +1,10 @@
 """
 All is a module that contains misc. function that can be called from everywhere.
 """
-import time
+from typing import List
 
-from trader.interface.base_screen import Screen
 from trader.interface.constants import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
+from trader.interface.screen.base_screen import Screen
 from trader.util.log import LOG
 
 XPATH_COUNTER = {
@@ -46,9 +46,7 @@ class GenericScreen(Screen):
 
         raise Exception("Could not find planet {}".format(target))
 
-
-
-    def extract_planets(self) -> list:
+    def extract_planets(self) -> List[Planet]:
         planets = self.driver.find_element_by_xpath(PLANETS)
 
         planet_names = planets.find_elements_by_class_name("planet-name")

@@ -16,7 +16,7 @@ You can perform some actions on a screen or query its information with extract_i
 
 class Screen:
     """
-    Tab represents a screen, with its information and interactions.
+    Screen represents a page, with its information and interactions.
     """
 
     def extract_info(self) -> dict:

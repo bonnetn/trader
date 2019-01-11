@@ -17,7 +17,7 @@ class LoginScreen(GenericScreen):
     def move(self) -> None:
         self.driver.get(self.url)
 
-    def login_sequence(self, username, password):
+    def login_sequence(self, username: str, password: str):
         """
         Execute the login sequence.
         """

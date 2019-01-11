@@ -1,7 +1,10 @@
+from typing import List, Dict
+
 from selenium.common.exceptions import NoSuchElementException
 
 from trader.interface.constants import TIMEOUT
 from trader.interface.screen.generic_screen import GenericScreen, Planet
+from trader.util.log import LOG
 
 FLEET_INFO_BUTTON_XPATH = '/html/body/div[2]/div[2]/div/div[2]/div/ul/li[8]/span/a/div'
 FRIENDLY_ROW_XPATH = '//*[contains(@class,"fleetDetails")]'
@@ -39,7 +42,7 @@ class FleetInfoScreen(GenericScreen):
                         LOG.warning("Could not unghost fleet.")
         raise Exception("Could not ghost specified fleet.")
 
-    def extract_info(self) -> dict:
+    def extract_info(self) -> Dict[str, List[FleetMovement]]:
         friendly_rows = self.driver.find_elements_by_xpath(FRIENDLY_ROW_XPATH)
         friendly_rows = map(lambda x: self._extract_friendly_row_info(x), friendly_rows)
         friendly_rows = list(friendly_rows)
@@ -66,7 +69,7 @@ class FleetInfoScreen(GenericScreen):
         self.driver.find_element_by_xpath(FLEET_INFO_BUTTON_XPATH).click()
         self.driver.find_element_by_id("messages_collapsed").click()
 
-    def _extract_friendly_row_info(self, row):
+    def _extract_friendly_row_info(self, row) -> FleetMovement:
         mission = row.find_element_by_class_name("mission")
         mission = mission.text
 
@@ -96,7 +99,7 @@ class FleetInfoScreen(GenericScreen):
         )
 
 
-def _extract_hostile_row_info(r):
+def _extract_hostile_row_info(r) -> FleetMovement:
     tr = r.find_element_by_xpath(HOSTILE_COUNTDOWN_XPATH)
     countdown = tr.text
     dest_name = r.find_element_by_xpath(HOSTILE_DEST_FLEET_XPATH).text
@@ -110,6 +113,6 @@ def _extract_hostile_row_info(r):
     )
 
 
-def _is_hostile(r):
+def _is_hostile(r) -> bool:
     tr = r.find_element_by_xpath(HOSTILE_COUNTDOWN_XPATH)
     return "hostile" in tr.get_attribute('class')

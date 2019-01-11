@@ -1,7 +1,6 @@
 """
 Common constants
 """
-from datetime import timedelta
 
 TIMEOUT = 5
 
