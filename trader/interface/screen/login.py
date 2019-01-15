@@ -31,6 +31,9 @@ class LoginScreen(GenericScreen):
         LOG.debug("Clicked 'Log in'")
 
         driver.implicitly_wait(TIMEOUT)
+        driver.find_element_by_xpath("/html/body/div[1]/div/div/div[1]/div[2]/div[1]/div[2]/a/button").click()
+
+        driver.implicitly_wait(TIMEOUT)
         driver.find_element_by_xpath(PLAY_BUTTON_XPATH).click()
         LOG.debug("Chose the universe.")
 
