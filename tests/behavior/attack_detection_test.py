@@ -111,7 +111,7 @@ def test_ghost_one_planet_attacked(planet1, planet2, attack1):
 
 
 # noinspection PyTypeChecker
-def test_ghost_wait_before_attack(planet1, planet2, attack1):
+def test_ghost_wait_before_attack(planet1, planet2):
     game = Mock(spec=GameInterface)
     ticks = set()
 

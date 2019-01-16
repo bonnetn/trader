@@ -20,5 +20,5 @@ def test_base_screen_move():
 
 def test_base_screen_lock():
     assert not lock.locked()
-    with TestScreen(None) as s:
+    with TestScreen(None):
         assert lock.locked()

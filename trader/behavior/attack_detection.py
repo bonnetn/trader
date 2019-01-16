@@ -71,7 +71,7 @@ def _try_to_ghost(planet: Planet,
         try:
             _do_ghost_to_random_planet(planet, my_planets, game)
             return
-        except Exception as e:
+        except Exception:
             if i != RETRIES_COUNT - 1:  # If not last retry
                 #  Log and retry.
                 LOG.exception("Failed to ghost {} (try {}/{}).".format(planet, i + 1, RETRIES_COUNT))
