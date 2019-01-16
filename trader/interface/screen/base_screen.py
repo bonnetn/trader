@@ -1,17 +1,19 @@
+"""
+This define a generic screen that you can find in the game. You usually access a screen by clicking on the right menu.
+You can perform some actions on a screen or query its information with extract_info.
+"""
 import threading
 
 
 class LoggedOutException(Exception):
+    """
+    Exception thrown if logged out of the game.
+    """
     pass
 
 
 # Lock access to Selenium while using a screen.
 lock = threading.Lock()
-
-"""
-This define a generic screen that you can find in the game. You usually access a screen by clicking on the right menu.
-You can perform some actions on a screen or query its information with extract_info.
-"""
 
 
 class Screen:

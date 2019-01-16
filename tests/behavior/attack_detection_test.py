@@ -1,3 +1,6 @@
+"""
+Test the ghosting behavior.
+"""
 from datetime import datetime
 from unittest.mock import Mock, call
 
@@ -9,6 +12,7 @@ from trader.interface.screen.fleet_info import FleetMovement
 from trader.interface.screen.generic_screen import Planet
 
 
+# noinspection PyMissingOrEmptyDocstring
 def test_ghost_cant_retrieve(planet1, planet2, ghost_mission, attack1):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -25,6 +29,7 @@ def test_ghost_cant_retrieve(planet1, planet2, ghost_mission, attack1):
     game.retrieve_fleet.assert_not_called()
 
 
+# noinspection PyMissingOrEmptyDocstring
 def test_ghost_retrieve(planet1, planet2, ghost_mission):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -41,6 +46,7 @@ def test_ghost_retrieve(planet1, planet2, ghost_mission):
     game.retrieve_fleet.assert_called_once_with("[1:1:1]")
 
 
+# noinspection PyMissingOrEmptyDocstring
 def test_ghost_cant_ghost(planet1, planet2, attack1):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -58,7 +64,7 @@ def test_ghost_cant_ghost(planet1, planet2, attack1):
     assert game.ghost.call_count == RETRIES_COUNT
 
 
-# noinspection PyTypeChecker
+# noinspection PyMissingOrEmptyDocstring
 def test_ghost_planets_are_safe(planet1, planet2):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -70,11 +76,12 @@ def test_ghost_planets_are_safe(planet1, planet2):
     }
 
     game.get_planets_and_missions = Mock(return_value=(my_planets, missions))
+    # noinspection PyTypeChecker
     ghost_fleet_if_necessary(game, ticks)
     game.ghost.assert_not_called()
 
 
-# noinspection PyTypeChecker
+# noinspection PyMissingOrEmptyDocstring
 def test_ghost_two_planet_attacked(planet1, planet2, attack1, attack2):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -86,6 +93,7 @@ def test_ghost_two_planet_attacked(planet1, planet2, attack1, attack2):
     }
 
     game.get_planets_and_missions = Mock(return_value=(my_planets, missions))
+    # noinspection PyTypeChecker
     ghost_fleet_if_necessary(game, ticks)
     assert game.ghost.call_count == 2
     game.ghost.assert_has_calls([
@@ -94,7 +102,7 @@ def test_ghost_two_planet_attacked(planet1, planet2, attack1, attack2):
     ], any_order=True)
 
 
-# noinspection PyTypeChecker
+# noinspection PyMissingOrEmptyDocstring
 def test_ghost_one_planet_attacked(planet1, planet2, attack1):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -106,11 +114,12 @@ def test_ghost_one_planet_attacked(planet1, planet2, attack1):
     }
 
     game.get_planets_and_missions = Mock(return_value=(my_planets, missions))
+    # noinspection PyTypeChecker
     ghost_fleet_if_necessary(game, ticks)
     game.ghost.assert_called_once_with(planet1, ['2', '2', '2', 'PLANET'])
 
 
-# noinspection PyTypeChecker
+# noinspection PyMissingOrEmptyDocstring
 def test_ghost_wait_before_attack(planet1, planet2):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -128,6 +137,7 @@ def test_ghost_wait_before_attack(planet1, planet2):
     }
 
     game.get_planets_and_missions = Mock(return_value=(my_planets, missions))
+    # noinspection PyTypeChecker
     ghost_fleet_if_necessary(game, ticks)
 
     game.ghost.assert_not_called()
@@ -138,6 +148,7 @@ def test_ghost_wait_before_attack(planet1, planet2):
     assert time - datetime.now() >= TIME_OFFSET
 
 
+# noinspection PyMissingOrEmptyDocstring
 @pytest.fixture
 def attack1():
     return FleetMovement(
@@ -149,6 +160,7 @@ def attack1():
     )
 
 
+# noinspection PyMissingOrEmptyDocstring
 @pytest.fixture
 def attack2():
     return FleetMovement(
@@ -160,6 +172,7 @@ def attack2():
     )
 
 
+# noinspection PyMissingOrEmptyDocstring
 @pytest.fixture
 def ghost_mission():
     return FleetMovement(
@@ -171,11 +184,13 @@ def ghost_mission():
     )
 
 
+# noinspection PyMissingOrEmptyDocstring
 @pytest.fixture
 def planet1():
     return Planet(coord="[1:1:1]", name="Planet1")
 
 
+# noinspection PyMissingOrEmptyDocstring
 @pytest.fixture
 def planet2():
     return Planet(coord="[2:2:2]", name="Planet2")

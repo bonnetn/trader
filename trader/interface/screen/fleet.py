@@ -1,3 +1,6 @@
+"""
+Fleet screen package.
+"""
 from selenium.common.exceptions import NoSuchElementException
 
 from trader.interface.constants import TIMEOUT, FLEET_BUTTON_XPATH
@@ -20,12 +23,21 @@ SEND_SHIPS_XPATH = '//*[@id="start"]'
 
 class FleetScreen(GenericScreen):
     """
+    Screen that represents the screen where you can see your fleet.
     """
 
     def extract_info(self) -> dict:
+        """
+        Extract fleet information.
+        :return:
+        """
         return {}
 
     def ghost_all(self, pos) -> None:
+        """
+        Ghost all fleet from the current planet to the specified position.
+        :param pos: Ghost fleet to this position.
+        """
         self.driver.implicitly_wait(TIMEOUT)
         try:
             self.driver.implicitly_wait(TIMEOUT)

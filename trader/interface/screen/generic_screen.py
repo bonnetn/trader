@@ -22,13 +22,29 @@ Planet = namedtuple('Planet', ['coord', 'name'])
 
 
 class GenericScreen(Screen):
+    """
+    Generic screen with resources and missions information.
+    """
+
     def extract_info(self) -> dict:
+        """
+        Extract information from the page.
+        Implement this function.
+        :return: pieces of information
+        """
         raise NotImplementedError()
 
     def move(self) -> None:
+        """
+        Method called when changing to this screen.
+        """
         raise NotImplementedError()
 
     def select_planet(self, target) -> None:
+        """
+        Change planet in the game.
+        :param target: planet
+        """
         planets = self.driver.find_elements_by_xpath(SMALL_PLANET_XPATH)
         for planet in planets:
             planet_coords = planet.find_element_by_class_name("planet-koords").text
@@ -46,6 +62,10 @@ class GenericScreen(Screen):
         raise Exception("Could not find planet {}".format(target))
 
     def extract_planets(self) -> List[Planet]:
+        """
+        Extract planet information.
+        :return: List of planets.
+        """
         planets = self.driver.find_element_by_xpath(PLANETS)
 
         planet_names = planets.find_elements_by_class_name("planet-name")

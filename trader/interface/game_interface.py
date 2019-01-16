@@ -1,3 +1,6 @@
+"""
+Game interface package.
+"""
 from selenium.webdriver.remote.webdriver import WebDriver
 
 from trader.interface.screen.fleet import FleetScreen
@@ -8,10 +11,18 @@ from trader.util.log import LOG
 
 
 class GameInterface:
+    """
+    Facade interface between the bot and the game.
+    """
+
     def __init__(self, driver: WebDriver):
         self.driver = driver
 
     def log_in(self, config: tuple) -> None:
+        """
+        Log in the game.
+        :param config: configuration class
+        """
         username, password, url = config
 
         with LoginScreen(self.driver, url) as screen:
@@ -20,6 +31,10 @@ class GameInterface:
         LOG.info("Logged in.")
 
     def get_planets_and_missions(self):
+        """
+        Retrieve planets and missions related information.
+        :return:
+        """
         with FleetInfoScreen(self.driver) as screen:
             my_planets = screen.extract_planets()
             missions = screen.extract_info()
@@ -27,11 +42,20 @@ class GameInterface:
         return my_planets, missions
 
     def ghost(self, src: Planet, dst_coords: list) -> None:
+        """
+        Ghost the fleet from a planet to another.
+        :param src: source planet
+        :param dst_coords: destination planet
+        """
         with FleetScreen(self.driver) as screen:
             screen.select_planet(src)
             screen.ghost_all(dst_coords)
 
     def retrieve_fleet(self, src) -> None:
+        """
+        Retrieve the fleet ghosted from a planet.
+        :param src: planet ghosted
+        """
         with FleetInfoScreen(self.driver) as screen:
             screen.select_planet(src)
         with FleetInfoScreen(self.driver) as screen:

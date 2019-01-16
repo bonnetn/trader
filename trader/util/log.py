@@ -1,3 +1,6 @@
+"""
+Logging package.
+"""
 import logging
 
 LOG = logging.getLogger("trader")

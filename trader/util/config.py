@@ -1,3 +1,6 @@
+"""
+Configuration extraction package.
+"""
 import configparser
 
 from trader.util.log import LOG

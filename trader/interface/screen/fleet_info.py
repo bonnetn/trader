@@ -1,3 +1,6 @@
+"""
+Fleet information screen package.
+"""
 from collections import namedtuple
 from typing import List, Dict
 
@@ -21,9 +24,14 @@ FleetMovement = namedtuple('FleetMovement', ['time1', 'time2', 'mission', 'src',
 
 class FleetInfoScreen(GenericScreen):
     """
+    Interface for the screen where you can see all of your ongoing missions.
     """
 
     def order_come_back(self, src):
+        """
+        Cancel a ghost mission.
+        :param src: source planet
+        """
         rows = self.driver.find_elements_by_xpath(FRIENDLY_ROW_XPATH)
         for row in rows:
             if row.find_element_by_class_name("mission").text == "Stationner":
@@ -42,6 +50,10 @@ class FleetInfoScreen(GenericScreen):
         raise Exception("Could not ghost specified fleet.")
 
     def extract_info(self) -> Dict[str, List[FleetMovement]]:
+        """
+        Get all the ongoing missions.
+        :return: The missions.
+        """
         friendly_rows = self.driver.find_elements_by_xpath(FRIENDLY_ROW_XPATH)
         friendly_rows = map(lambda x: self._extract_friendly_row_info(x), friendly_rows)
         friendly_rows = list(friendly_rows)

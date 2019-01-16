@@ -1,3 +1,6 @@
+"""
+Bot main package.
+"""
 import datetime
 import time
 from typing import Set, Callable
@@ -9,6 +12,10 @@ from trader.util.time import remove_dates_in_past, get_closest_datetime
 
 
 class Bot:
+    """
+    Bot main class.
+    """
+
     def _trigger_bot(self, game: GameInterface, ticks: Set[datetime.datetime]) -> None:
         """
         Trigger main algorithm of the bot.

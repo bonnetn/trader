@@ -1,3 +1,6 @@
+"""
+Main package.
+"""
 from selenium import webdriver
 
 from trader.bot import Bot

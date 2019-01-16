@@ -1,3 +1,6 @@
+"""
+Definition of behavior of the bot when it will check for ongoing attacks.
+"""
 import random
 from datetime import timedelta, datetime
 from typing import Set, List
@@ -12,11 +15,20 @@ RETRIES_COUNT = 3
 
 
 class CouldNotGhostException(Exception):
+    """
+    Failed attempt to ghost.
+    """
+
     def __init__(self, planet: Planet):
         self.planet = planet
 
 
 def ghost_fleet_if_necessary(game: GameInterface, ticks: Set[datetime]) -> None:
+    """
+    Ghost the fleet of planets that are threatened.
+    :param game: Game interface
+    :param ticks: List of datetimes when to wake the bot again.
+    """
     # Get account information.
     my_planets, missions = game.get_planets_and_missions()
 
