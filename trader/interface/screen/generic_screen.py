@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 All is a module that contains misc. function that can be called from everywhere.
 """

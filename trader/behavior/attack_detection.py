@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Definition of behavior of the bot when it will check for ongoing attacks.
 """
