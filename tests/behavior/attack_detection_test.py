@@ -20,6 +20,7 @@ def test_ghost_cant_retrieve(planet1, planet2, ghost_mission, attack1):
     }
 
     game.get_planets_and_missions = Mock(return_value=(my_planets, missions))
+    # noinspection PyTypeChecker
     ghost_fleet_if_necessary(game, ticks)
     game.retrieve_fleet.assert_not_called()
 
@@ -35,6 +36,7 @@ def test_ghost_retrieve(planet1, planet2, ghost_mission):
     }
 
     game.get_planets_and_missions = Mock(return_value=(my_planets, missions))
+    # noinspection PyTypeChecker
     ghost_fleet_if_necessary(game, ticks)
     game.retrieve_fleet.assert_called_once_with("[1:1:1]")
 
@@ -51,10 +53,12 @@ def test_ghost_cant_ghost(planet1, planet2, attack1):
 
     game.get_planets_and_missions = Mock(return_value=(my_planets, missions))
     game.ghost = Mock(side_effect=Exception("Failed to ghost"))
+    # noinspection PyTypeChecker
     ghost_fleet_if_necessary(game, ticks)
     assert game.ghost.call_count == RETRIES_COUNT
 
 
+# noinspection PyTypeChecker
 def test_ghost_planets_are_safe(planet1, planet2):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -70,6 +74,7 @@ def test_ghost_planets_are_safe(planet1, planet2):
     game.ghost.assert_not_called()
 
 
+# noinspection PyTypeChecker
 def test_ghost_two_planet_attacked(planet1, planet2, attack1, attack2):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -89,6 +94,7 @@ def test_ghost_two_planet_attacked(planet1, planet2, attack1, attack2):
     ], any_order=True)
 
 
+# noinspection PyTypeChecker
 def test_ghost_one_planet_attacked(planet1, planet2, attack1):
     game = Mock(spec=GameInterface)
     ticks = set()
@@ -104,6 +110,7 @@ def test_ghost_one_planet_attacked(planet1, planet2, attack1):
     game.ghost.assert_called_once_with(planet1, ['2', '2', '2', 'PLANET'])
 
 
+# noinspection PyTypeChecker
 def test_ghost_wait_before_attack(planet1, planet2, attack1):
     game = Mock(spec=GameInterface)
     ticks = set()
