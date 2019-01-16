@@ -36,6 +36,7 @@ class Screen:
     def __enter__(self):
         lock.acquire()
         self.move()
+        self.driver.execute_script("document.body.style.transform='scale(0.3)';");
         return self
 
     def __exit__(self, typ, value, traceback):
