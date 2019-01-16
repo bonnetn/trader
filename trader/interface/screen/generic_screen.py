@@ -1,6 +1,7 @@
 """
 All is a module that contains misc. function that can be called from everywhere.
 """
+from collections import namedtuple
 from typing import List
 
 from trader.interface.constants import ALL_RESOURCES, METAL, CRYSTAL, DEUTERIUM, ENERGY, TIMEOUT
@@ -16,8 +17,6 @@ XPATH_COUNTER = {
 
 PLANETS = '//*[@id="planetList"]'
 SMALL_PLANET_XPATH = '//*[contains(@class,"smallplanet")]'
-
-from collections import namedtuple
 
 Planet = namedtuple('Planet', ['coord', 'name'])
 

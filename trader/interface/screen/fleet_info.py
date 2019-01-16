@@ -1,3 +1,4 @@
+from collections import namedtuple
 from typing import List, Dict
 
 from selenium.common.exceptions import NoSuchElementException
@@ -14,8 +15,6 @@ HOSTILE_ROW_XPATH = '//*[contains(@class,"eventFleet")]'
 HOSTILE_COUNTDOWN_XPATH = './/*[contains(@class,"countDown")]'
 HOSTILE_DEST_FLEET_XPATH = './/*[contains(@class,"destFleet")]'
 HOSTILE_DEST_COORDS_XPATH = './/*[contains(@class,"destCoords")]/a'
-
-from collections import namedtuple
 
 FleetMovement = namedtuple('FleetMovement', ['time1', 'time2', 'mission', 'src', 'dst'])
 
