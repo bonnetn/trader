@@ -9,6 +9,7 @@ if __name__ == "__main__":
     LOG.info("Parsed the configuration file.")
 
     while True:
+        # noinspection PyBroadException
         try:
             Bot(config, webdriver.Firefox).run()
         except Exception:

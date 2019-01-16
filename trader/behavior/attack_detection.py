@@ -68,6 +68,7 @@ def _try_to_ghost(planet: Planet,
                   game: GameInterface,
                   my_planets: List[Planet]) -> None:
     for i in range(RETRIES_COUNT):
+        # noinspection PyBroadException
         try:
             _do_ghost_to_random_planet(planet, my_planets, game)
             return
