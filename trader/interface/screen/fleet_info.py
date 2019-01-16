@@ -39,7 +39,7 @@ class FleetInfoScreen(GenericScreen):
                         row.find_element_by_xpath(COME_BACK_XPATH).click()
                         return
                     except NoSuchElementException:
-                        LOG.warning("Could not unghost fleet.")
+                        LOG.exception("Could not unghost fleet.")
         raise Exception("Could not ghost specified fleet.")
 
     def extract_info(self) -> Dict[str, List[FleetMovement]]:
