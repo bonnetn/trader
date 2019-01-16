@@ -47,7 +47,7 @@ def ghost_fleet_if_necessary(game: GameInterface, ticks: Set[datetime]) -> None:
 
     # Order ghost fleet to come back if the planet is safe.
     for mission in _get_ghost_missions(friendly_missions):
-        planet = next(filter(lambda x: x.coord == mission.src, my_planets))
+        planet = next(filter(lambda x: x.coord == mission.src.coord, my_planets))
         attacks = _get_attacks_to_this_planet(hostile_missions, planet)
         if not attacks:
             game.retrieve_fleet(mission.src)
